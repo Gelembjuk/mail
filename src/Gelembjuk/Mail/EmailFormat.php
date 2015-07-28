@@ -33,14 +33,14 @@ class EmailFormat {
 	*
 	* @var string
 	*/
-	protected $locale;
+	protected $locale = '';
 	/**
 	* Default Locale. 2 symbols identifying a language.
 	* Is used when no template for required locale is found 
 	*
 	* @var string
 	*/
-	protected $deflocale;
+	protected $deflocale = '';
 	/**
 	* Prefix for out template file, common template used for all emails 
 	*
@@ -84,7 +84,9 @@ class EmailFormat {
 			throw new \Exception('Templates path is not set in EmailFormat');
 		}
 		
-		$this->locale = $options['locale'];
+		if ($options['locale'] != '') {
+			$this->setLocale($options['locale']);
+		}
 		
 		if (isset($options['deflocale'])) {
 			$this->deflocale = $options['deflocale']; 
@@ -123,6 +125,12 @@ class EmailFormat {
 		if (!class_exists($this->templateprocessorclass)) {
 			throw new \Exception(sprintf('Temlating class %s not found',$this->templateprocessorclass));
 		}
+	}
+	/**
+	 * Set new locale 
+	 */
+	public function setLocale($locale) {
+		$this->locale = $locale;
 	}
 	/**
 	 * Generate email body and subject based on templates and options

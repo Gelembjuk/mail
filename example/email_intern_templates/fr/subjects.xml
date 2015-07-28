@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+	<contact>
+		<subject>Nouveau Contact Message</subject>
+		<description>This email is sent to admin when new contact message is posted with the form</description>
+	</contact>
+</templates>

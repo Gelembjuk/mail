@@ -57,11 +57,22 @@ abstract class MailerBase {
 		
 	}
 	/**
+	 * Set formatter option 
+	 * 
+	 * @param string $key Option key
+	 * @param mixed $val Option value
+	 */
+	public function setFormatterOption($key,$val) {
+		$this->formatoptions[$key] = $val;
+	}
+	/**
 	 * Send email function. It must be defined in child classes
 	 */
 	public function formatAndSendEmail($template,$data,$email,$from,
 		$replyto='',$ccemail='',$bccemail='',$outtemplate = null,$textemail=false) {
-			
+		
+		$this->logQ($this->formatoptions['locale'],'formatter');
+		
 		$formatter = new EmailFormat($this->formatoptions);
 		
 		$templatedata = $formatter->fetchTemplate($template,$data,$outtemplate);

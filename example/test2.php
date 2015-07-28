@@ -35,7 +35,7 @@ $maileroptions = array(
 		'deflocale' => 'en',
 		'templateprocessorclass' => null, // create default Smarty
 		'templatecompiledir' => $thisdir.'/email_tmp/',
-		'templatespath' => $thisdir.'/email_templates/'
+		'templatespath' => $thisdir.'/email_intern_templates/'
 		),
 	// other options related to specified email sending class
 	// next options are only for PHPMailer
@@ -66,12 +66,12 @@ $mailer->initMailer($maileroptions);
 
 // ===================== TEST SECTION =================================
 
-// SEND CONTACT EMAIL
-
 $contactdata = array(
 	'name' => 'John Smith',
 	'message' => 'This is my contact message'
 );
+
+// SEND CONTACT EMAIL in default locale (en)
 
 $mailer->formatAndSendEmail(
 	'contact',  // template name
@@ -80,25 +80,29 @@ $mailer->formatAndSendEmail(
 	'from_email@gmail.com'
 	);
 	
-// SEND ACTIVATION EMAIL
+// now set `de` locale and send again German copy of email
+$mailer->setFormatterOption('locale','de');
 
-$data = array(
-	'user' => 'User name',
-	'activationlink' => 'http://fakesite.com/activate/code'
-);
-
+// send same email but now templates must be from different locale
 $mailer->formatAndSendEmail(
-	'activate',  // template name
-	$data,
-	'user_email@gmail.com',
-	'site_admin_email@gmail.com',
-	'',  // reply-top
-	'',  // CC
-	'',  // BCC
-	'custom' //custom out template 
+	'contact',  // template name
+	$contactdata,
+	'target_email@gmail.com',
+	'from_email@gmail.com'
 	);
+	
+// now set `fr` locale and send again French copy of email
+$mailer->setFormatterOption('locale','fr');
 
-echo 'Both emails were sent. ';
+// send same email but now templates must be from different locale
+$mailer->formatAndSendEmail(
+	'contact',  // template name
+	$contactdata,
+	'target_email@gmail.com',
+	'from_email@gmail.com'
+	);
+	
+echo 'All emails were sent. ';
 
 if ($mailertype == 'null') {
 	echo 'Check log file to see results';
