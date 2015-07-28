@@ -8,6 +8,8 @@ Using composer: [gelembjuk/mail](http://packagist.org/packages/gelembjuk/mail) `
 
 ### Configuration
 
+```php
+
 $formatteroptions = array( 
 	'locale' => '', 
 		// optional, add if you need international support
@@ -36,6 +38,8 @@ $maileroptions = array(
 	'smtp_user' => 'smtp user',	// aka your gmail account
 	'smtp_password' => 'smtp password', // your smtp password (gmail etc)
 );
+
+```
 
 ### Usage
 
