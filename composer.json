@@ -1,6 +1,6 @@
 {
     "name": "gelembjuk/mail",
-    "description": "Allows to add logging functions to different classes, helps to handle errors, log errors and display error screen. Can catch warnings and fatal errors",
+    "description": "Creates email body and subject from templates using Smarty or Twig and send email with one of supported mailes (PHPMailer, mail() function etc)",
     "require": {
         "gelembjuk/logger": "1.*",
         "gelembjuk/templating": "1.*"
