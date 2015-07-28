@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+	<contact>
+		<subject>New Contact Message</subject>
+		<description>This email is sent to admin when new contact message is posted with the form</description>
+	</contact>
+	<activate>
+		<subject>Activate your new account</subject>
+		<description>This email is sent to a user when new account is registered</description>
+	</activate>
+</templates>

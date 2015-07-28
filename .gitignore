@@ -1,0 +1,10 @@
+
+example/vendor
+example/vendor/*
+
+# ignore temp folders in examples
+example/logs/
+example/logs/*
+
+example/email_tmp/
+example/email_tmp/*
