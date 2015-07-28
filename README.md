@@ -82,7 +82,7 @@ activate.htm - template for this email,
 
 ```
 
-out_default.htm - common `out` template used fro all emails (aka ommon header/footer for all emails)
+out_default.htm - common `out` template used fro all emails (aka common header/footer for all emails)
 
 ```html
 
