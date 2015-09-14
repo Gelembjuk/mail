@@ -61,6 +61,12 @@ class EmailFormat {
 	*/
 	protected $tepmlateprocessorinitoptions;
 	/**
+	* All options to use outside of init() and __construct()
+	*
+	* @var array
+	*/
+	protected $options;
+	/**
 	 * Constructor
 	 * Accepts array of options to init an object
 	 * 
@@ -125,6 +131,8 @@ class EmailFormat {
 		if (!class_exists($this->templateprocessorclass)) {
 			throw new \Exception(sprintf('Temlating class %s not found',$this->templateprocessorclass));
 		}
+
+		$this->options = $options;
 	}
 	/**
 	 * Set new locale 
@@ -176,6 +184,10 @@ class EmailFormat {
 		
 		// init template processor
 		$templating->init($this->tepmlateprocessorinitoptions);
+
+		if (is_object($this->options['application'])) {
+			$templating->setApplication($this->options['application']);
+		}
 		
 		// check if template processor can access a template
 		if (!$templating->checkTemplateExists($templatedata['file'])) {
