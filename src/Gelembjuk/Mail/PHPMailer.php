@@ -36,7 +36,7 @@ class PHPMailer extends MailerBase {
 		$mail = new \PHPMailer();
 
 		$mail->SMTPDebug  = 0; 
-                $mail->CharSet = 'UTF-8';
+        $mail->CharSet = 'UTF-8';
                 
                 // select mailsystem, get it from options
 		if ($this->options['mailsystem'] == 'mail') {
@@ -70,6 +70,13 @@ class PHPMailer extends MailerBase {
 			
 				$mail->SMTPSecure = ($this->options['smtp_secure_proto'] != '') ? $this->options['smtp_secure_proto'] : "tls";
 				$this->logQ("SMTP secure is On with proto ".$mail->SMTPSecure,'mailsend|phpmailer');
+				
+				if (is_array($this->options['smtp_secure_options'])) {
+                    $mail->SMTPOptions = $this->options['smtp_secure_options'];
+				}
+			} else {
+                $mail->SMTPSecure = null;
+                $this->logQ("SMTP secure is Off",'mailsend|phpmailer');
 			}
 			$mail->Host = $this->options['smtp_host'];
 			$mail->Port = $this->options['smtp_port'];
