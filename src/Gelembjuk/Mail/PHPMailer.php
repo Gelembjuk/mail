@@ -76,6 +76,7 @@ class PHPMailer extends MailerBase {
 				}
 			} else {
                 $mail->SMTPSecure = null;
+                $mail->SMTPAutoTLS  = false;
                 $this->logQ("SMTP secure is Off",'mailsend|phpmailer');
 			}
 			$mail->Host = $this->options['smtp_host'];
