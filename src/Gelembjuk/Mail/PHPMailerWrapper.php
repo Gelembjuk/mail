@@ -47,10 +47,12 @@ class PHPMailerWrapper extends MailerBase {
 		}
                 
         if (is_array($from)) {
+			$mail->Sender=$from['address'];
 			$mail->SetFrom($from['address'],$from['name']);
 			$mail->From = $from['address'];
 			$mail->FromName = $from['name'];
 		} else {
+			$mail->Sender=$from;
 			$mail->SetFrom($from);
 			$mail->From = $from;
 		}
